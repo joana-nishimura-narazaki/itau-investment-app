@@ -78,8 +78,8 @@ Este projeto foi desenvolvido como parte do Processo Seletivo Itaú Unibanco –
 1. Clone o repositório:
 
    ```bash
-   git clone https://github.com/seu-usuario/controle-investimentos.git
-   cd controle-investimentos
+   git clone https://github.com/joana-nishimura-narazaki/itau-investment-app.git
+   cd itau-investment-app
    ```
 
 2. Configure o banco de dados MySQL e execute o script de criação das tabelas:
