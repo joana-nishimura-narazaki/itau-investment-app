@@ -1,3 +1,7 @@
+Processo Seletivo Itaú Unibanco – Fase 2
+Candidato: Joana Nishimura Narazaki
+Data: 09/06/2025
+
 # Sistema de Controle de Investimentos
 
 Este projeto foi desenvolvido como parte do Processo Seletivo Itaú Unibanco – Fase 2 (Teste Técnico) e implementa um sistema completo para controle de investimentos em renda variável.
