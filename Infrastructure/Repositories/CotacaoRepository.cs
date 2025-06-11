@@ -1,27 +1,33 @@
+using Domain.Entities;
+using Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
+using Application.Interfaces;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
 namespace Infrastructure.Repositories
 {
-    using Application.Interfaces;
-    using Domain.Entities;
-    using Infrastructure.Data;
-    using Microsoft.EntityFrameworkCore;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-
     public class CotacaoRepository : ICotacaoRepository
     {
-        private readonly AppDbContext _ctx;
-        public CotacaoRepository(AppDbContext ctx) => _ctx = ctx;
+        private readonly AppDbContext _context;
 
-        public async Task<Cotacao> AddAsync(Cotacao c)
+        public CotacaoRepository(AppDbContext context)
         {
-            _ctx.Cotacoes.Add(c);
-            await _ctx.SaveChangesAsync();
-            return c;
+            _context = context;
         }
 
         public async Task<IEnumerable<Cotacao>> GetByAtivoAsync(int ativoId)
-            => await _ctx.Cotacoes
-                         .Where(c => c.AtivoId == ativoId)
-                         .ToListAsync();
+        {
+            return await _context.Cotacoes
+                .AsNoTracking()
+                .Where(c => c.AtivoId == ativoId)
+                .ToListAsync();
+        }
+
+        public async Task AddAsync(Cotacao cotacao)
+        {
+            await _context.Cotacoes.AddAsync(cotacao);
+            await _context.SaveChangesAsync();
+        }
     }
 }

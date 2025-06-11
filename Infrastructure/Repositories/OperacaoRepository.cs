@@ -1,10 +1,10 @@
-using Application.Interfaces;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Domain.Entities;
 using Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Linq;
+using Application.Interfaces;
 
 namespace Infrastructure.Repositories
 {

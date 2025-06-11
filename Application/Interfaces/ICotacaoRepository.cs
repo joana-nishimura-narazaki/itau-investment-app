@@ -1,13 +1,12 @@
-// Application/Interfaces/ICotacaoRepository.cs
+using Domain.Entities;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
 namespace Application.Interfaces
 {
-    using Domain.Entities;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-
     public interface ICotacaoRepository
     {
-        Task<Cotacao> AddAsync(Cotacao c);
         Task<IEnumerable<Cotacao>> GetByAtivoAsync(int ativoId);
+        Task AddAsync(Cotacao cotacao);
     }
 }

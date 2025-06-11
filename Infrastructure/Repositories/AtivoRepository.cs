@@ -1,11 +1,39 @@
-[HttpGet]
-public async Task<IActionResult> GetAll()
+using Domain.Entities;
+using Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
+using Application.Interfaces;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace Infrastructure.Repositories
 {
-    var ativos = await _repo.GetAllAsync();
-    var dtos = ativos.Select(a => new AtivoReadDto {
-        Id = a.Id,
-        Codigo = a.Codigo,
-        Nome = a.Nome
-    });
-    return Ok(dtos);
+    public class AtivoRepository : IAtivoRepository
+    {
+        private readonly AppDbContext _context;
+
+        public AtivoRepository(AppDbContext context)
+        {
+            _context = context;
+        }
+
+        public async Task<IEnumerable<Ativo>> GetAllAsync()
+        {
+            return await _context.Ativos
+                .AsNoTracking()
+                .ToListAsync();
+        }
+
+        public async Task<Ativo?> GetByIdAsync(int id)
+        {
+            return await _context.Ativos
+                .AsNoTracking()
+                .FirstOrDefaultAsync(a => a.Id == id);
+        }
+
+        public async Task AddAsync(Ativo ativo)
+        {
+            await _context.Ativos.AddAsync(ativo);
+            await _context.SaveChangesAsync();
+        }
+    }
 }
